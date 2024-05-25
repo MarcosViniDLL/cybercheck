@@ -1,16 +1,21 @@
-# cybercheck
+<h1 align="center">
+    <p>CyberCheck</p>
+</h1>
 
-A new Flutter project.
+## 📕 Sobre o CyberCheck
 
-## Getting Started
+O <b>CyberCheck</b> é um aplicativo de lista de tarefas simples e intuitivo, projetado para facilitar o gerenciamento de suas <b>atividades diárias</b>. Com ele, você pode <b>adicionar suas próximas tarefas</b>, <b>marcar quando estiverem concluídas e até mesmo excluí-las</b>, proporcionando uma experiência eficiente de organização pessoal. Ideal para manter-se <b>produtivo</b> e <b>focado em suas metas</b>.
 
-This project is a starting point for a Flutter application.
+## 🛠 Tecnologias
 
-A few resources to get you started if this is your first Flutter project:
+<p> Tecnologias e ferramentas usadas nesse projeto:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+<b> Mobile </b>
+- [Dart](https://dart.dev/guides)
+- [Flutter](https://docs.flutter.dev/)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+<b> Utilitários </b>
+- Banco de dados: [SQLite](https://docs.flutter.dev/cookbook/persistence/sqlite)
+- Protótipo: [Figma](https://www.figma.com)
+- Editor/IDE: [Visual Studio Code](https://code.visualstudio.com/) e [Android Studio](https://developer.android.com/studio?hl=pt-br)
+- Versionamento: [Git](https://git-scm.com/)
