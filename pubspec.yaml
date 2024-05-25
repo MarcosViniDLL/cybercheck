@@ -1,0 +1,25 @@
+name: cybercheck
+description: "A new Flutter project."
+# A linha a seguir evita que o pacote seja publicado acidentalmente no pub.dev usando `flutter pub publish`.
+# Isso é preferível para pacotes privados.
+publish_to: 'none' # Remova esta linha se desejar publicar no pub.dev
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.4.1 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.6
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/images/
