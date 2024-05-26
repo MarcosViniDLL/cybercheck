@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:cybercheck/screens/home.dart';
+import 'package:cybercheck/screens/login_screen.dart';
 import 'package:flutter/services.dart';
 
 void main() {
@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Cybercheck',
-      home: Home(),
+      home: LoginScreen(),
     );
   }
 }

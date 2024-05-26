@@ -3,6 +3,7 @@ import 'package:cybercheck/widgets/todo_item.dart';
 import 'package:flutter/material.dart';
 import 'package:cybercheck/components/colors.dart';
 import 'package:flutter/widgets.dart';
+import 'package:cybercheck/screens/login_screen.dart';
 
 class Home extends StatefulWidget {
   Home({Key? key}) : super(key: key);
@@ -27,6 +28,7 @@ class _HomeState extends State<Home> {
     return Scaffold(
       backgroundColor: backgroundColor,
       appBar: _buildAppBar(),
+      drawer: _buildDrawer(context),
         body: Stack(
           children: [
             Container(
@@ -180,8 +182,11 @@ class _HomeState extends State<Home> {
       title: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Icon(
-            Icons.menu, color: colorBlack, size: 30,
+          IconButton(
+            icon: Icon(Icons.menu, color: colorBlack, size: 30),
+            onPressed: () {
+              Scaffold.of(context).openDrawer();
+            },
           ),
           Container(
             height: 40, width: 40,
@@ -193,5 +198,49 @@ class _HomeState extends State<Home> {
         ],
       ),
       );
+  }
+
+  Drawer _buildDrawer(BuildContext context) {
+    return Drawer(
+      child: ListView(
+        padding: EdgeInsets.zero,
+        children: <Widget>[
+          DrawerHeader(
+            decoration: BoxDecoration(
+              color: backgroundColor,
+            ),
+            child: Text(
+              'Menu',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 24,
+              ),
+            ),
+          ),
+          ListTile(
+            leading: Icon(Icons.settings),
+            title: Text('Configurações'),
+            onTap: () {
+              //
+              Navigator.pop(context);
+            },
+          ),
+          ListTile(
+            leading: Icon(Icons.exit_to_app),
+            title: Text('Sair'),
+            onTap: () {
+              Navigator.pop(context);
+              _signOut();
+            },
+          ),
+        ],
+      ),
+    );
+  }
+
+  void _signOut() {
+    Navigator.of(context).pushReplacement(
+      MaterialPageRoute(builder: (context) => LoginScreen()),
+    );
   }
 }
