@@ -10,12 +10,29 @@ O <b>CyberCheck</b> é um aplicativo de lista de tarefas simples e intuitivo, pr
 
 <p> Tecnologias e ferramentas usadas nesse projeto:
 
-<b> Mobile </b>
-- [Dart](https://dart.dev/guides)
-- [Flutter](https://docs.flutter.dev/)
+<b> APP Mobile </b>
+<br><br>
+![Dart](https://img.shields.io/badge/Dart-0175C2?style=for-the-badge&logo=dart&logoColor=white)
+<br>
+![Flutter](https://img.shields.io/badge/Flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white)
 
 <b> Utilitários </b>
-- Banco de dados: [SQLite](https://docs.flutter.dev/cookbook/persistence/sqlite)
-- Protótipo: [Figma](https://www.figma.com)
-- Editor/IDE: [Visual Studio Code](https://code.visualstudio.com/) e [Android Studio](https://developer.android.com/studio?hl=pt-br)
-- Versionamento: [Git](https://git-scm.com/)
+- `Banco de dados`: [SQLite](https://docs.flutter.dev/cookbook/persistence/sqlite)
+- `Protótipo`: [Figma](https://www.figma.com)
+- `Editor/IDE`: [Visual Studio Code](https://code.visualstudio.com/) e [Android Studio](https://developer.android.com/studio?hl=pt-br)
+- `Versionamento`: [Git](https://git-scm.com/)
+
+## 📱 Como Executar
+
+- Primeiramente, você precisa instalar o Flutter no seu computador, clique no link ao laado e faça a instalação!
+- [Link do vídeo](https://www.youtube.com/watch?v=2qeDBQZkjn8)
+
+
+<p> Para rodar na sua IDE, você primeiro precisa clonar o repositório:</p>
+
+```sh
+git clone https://github.com/MarcosViniDLL/cybercheck-flutter.git
+```
+
+Após clonar o repositório, siga até o diretório ```lib``` e abra o arquivo ```main.dart```. Selecione o emulador, e então você poderá executar normalmente o aplicativo.
+
