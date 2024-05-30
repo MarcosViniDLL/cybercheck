@@ -1,45 +1,42 @@
 import 'package:flutter/material.dart';
+import 'package:cybercheck/components/colors.dart';
 import 'package:cybercheck/screens/home.dart';
 
 class LoginScreen extends StatelessWidget {
+  final Function toggleTheme;
+
+  LoginScreen({required this.toggleTheme});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        decoration: BoxDecoration(
-          color: Color(0xffeef2f6),// Defina a cor de fundo desejada
-        ),
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Image.asset(
-                'assets/images/logo.jpeg',
-                width: 150,
-                height: 150,
-              ),
-              SizedBox(height: 50), // Espaçamento entre a logo e o botão
-              TextButton(
-                onPressed: () {
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(builder: (context) => Home()),
-                  );
-                },
-                child: Text(
-                  'Entrar',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 20,
-                  ),
-                ),
-                style: TextButton.styleFrom(
-                  backgroundColor: Color(0xFF25BBFD), // Cor de fundo do botão
-                  padding: EdgeInsets.symmetric(horizontal: 50, vertical: 15),
+      backgroundColor: backgroundColor,
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset('assets/images/logo.jpeg', height: 150, width: 150),
+            SizedBox(height: 50),
+            TextButton(
+              onPressed: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => Home(toggleTheme: toggleTheme)),
+                );
+              },
+              style: TextButton.styleFrom(
+                backgroundColor: Colors.blue,
+                padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8),
                 ),
               ),
-            ],
-          ),
+              child: Text(
+                'Entrar',
+                style: TextStyle(color: Colors.white, fontSize: 16),
+              ),
+            ),
+          ],
         ),
       ),
     );
