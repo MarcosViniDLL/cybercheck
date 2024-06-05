@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:cybercheck/components/colors.dart';
 
 class SettingsScreen extends StatelessWidget {
   final Function toggleTheme;

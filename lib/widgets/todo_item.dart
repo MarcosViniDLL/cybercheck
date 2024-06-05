@@ -1,11 +1,11 @@
+import 'package:flutter/material.dart';
 import 'package:cybercheck/components/colors.dart';
 import 'package:cybercheck/model/todo.dart';
-import 'package:flutter/material.dart';
 
 class ToDoItem extends StatelessWidget {
   final ToDo todo;
-  final onToDoChanged;
-  final onDeleteItem;
+  final Function onToDoChanged;
+  final Function onDeleteItem;
   
   const ToDoItem({Key? key, required this.todo, required this.onToDoChanged, required this.onDeleteItem}) : super(key: key);
 
@@ -31,7 +31,7 @@ class ToDoItem extends StatelessWidget {
           style: TextStyle(
             fontSize: 16,
             color: colorBlack,
-            decoration: todo.isDone? TextDecoration.lineThrough : null,
+            decoration: todo.isDone ? TextDecoration.lineThrough : null,
           ),
         ),
         trailing: Container(
@@ -41,7 +41,7 @@ class ToDoItem extends StatelessWidget {
           width: 35,
           decoration: BoxDecoration(
             color: colorRed,
-            borderRadius: BorderRadius.circular(5)
+            borderRadius: BorderRadius.circular(5),
           ),
           child: IconButton(
             color: Colors.white,
@@ -53,6 +53,6 @@ class ToDoItem extends StatelessWidget {
           ),
         ),
       ),
-      );
+    );
   }
 }

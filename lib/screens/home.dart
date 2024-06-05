@@ -2,8 +2,8 @@ import 'package:cybercheck/model/todo.dart';
 import 'package:cybercheck/widgets/todo_item.dart';
 import 'package:flutter/material.dart';
 import 'package:cybercheck/components/colors.dart';
-import 'package:cybercheck/screens/login_screen.dart';
-import 'package:cybercheck/screens/settings.dart';
+import 'settings.dart';
+import 'login_screen.dart';
 
 class Home extends StatefulWidget {
   final Function toggleTheme;
@@ -28,8 +28,10 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-      appBar: _buildAppBar(),
+      backgroundColor: Theme.of(context).brightness == Brightness.dark
+          ? Theme.of(context).scaffoldBackgroundColor
+          : backgroundColor, // Ajuste de cor de fundo
+      appBar: _buildAppBar(context),
       drawer: _buildDrawer(context),
       body: Stack(
         children: [
@@ -66,13 +68,15 @@ class _HomeState extends State<Home> {
                     margin: EdgeInsets.only(bottom: 20, right: 20, left: 20),
                     padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
                     decoration: BoxDecoration(
-                      color: Colors.white,
-                      boxShadow: const [BoxShadow(
-                        color: Colors.grey,
-                        offset: Offset(0.0, 0.0),
-                        blurRadius: 10.0,
-                        spreadRadius: 0.0,
-                      )],
+                      color: Theme.of(context).brightness == Brightness.dark ? Colors.grey[800] : Colors.white,
+                      boxShadow: const [
+                        BoxShadow(
+                          color: Colors.grey,
+                          offset: Offset(0.0, 0.0),
+                          blurRadius: 10.0,
+                          spreadRadius: 0.0,
+                        ),
+                      ],
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: TextField(
@@ -95,9 +99,21 @@ class _HomeState extends State<Home> {
                     },
                     style: ElevatedButton.styleFrom(
                       textStyle: TextStyle(color: Colors.white),
+                      padding: EdgeInsets.all(16),
                       backgroundColor: Color(0xFF25BBFD),
                       minimumSize: Size(60, 60),
                       elevation: 10,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30)
+                      ),
+                      shadowColor: Colors.black.withOpacity(0.2),
+                    ).copyWith(
+                      backgroundColor: MaterialStateProperty.resolveWith<Color>((Set<MaterialState> states) {
+                        if (states.contains(MaterialState.pressed))
+                          return Color(0xFF1E90FF); // Cor quando pressionado
+                        return Color(0xFF25BBFD); // Cor padrão
+                      }),
+                      shadowColor: MaterialStateProperty.all<Color>(Colors.black.withOpacity(0.2)),
                     ),
                   ),
                 ),
@@ -148,47 +164,38 @@ class _HomeState extends State<Home> {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 15),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Theme.of(context).brightness == Brightness.dark ? Colors.grey[800] : Colors.white,
         borderRadius: BorderRadius.circular(20),
       ),
       child: TextField(
         onChanged: (value) => _runFilter(value),
+        style: TextStyle(color: Theme.of(context).brightness == Brightness.dark ? Colors.white : Colors.black),
         decoration: InputDecoration(
           contentPadding: EdgeInsets.all(0),
           prefixIcon: Icon(Icons.search, color: colorBlack, size: 20),
           prefixIconConstraints: BoxConstraints(maxHeight: 20, minWidth: 25),
           border: InputBorder.none,
           hintText: 'Pesquisar',
-          hintStyle: TextStyle(color: colorGrey),
+          hintStyle: TextStyle(color: Theme.of(context).brightness == Brightness.dark ? Colors.white.withOpacity(0.5) : colorGrey),
         ),
       ),
     );
   }
 
-  AppBar _buildAppBar() {
-    return AppBar(
-      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-      elevation: 0,
-      title: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          IconButton(
-            icon: Icon(Icons.menu, color: colorBlack, size: 30),
-            onPressed: () {
-              Scaffold.of(context).openDrawer();
-            },
-          ),
-          Container(
-            height: 40, width: 40,
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(20),
-              child: Image.asset('assets/images/logo.jpeg'),
-            ),
-          ),
-        ],
+  AppBar _buildAppBar(BuildContext context) {
+  return AppBar(
+    backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+    elevation: 0,
+    title: Container(
+      height: 40,
+      width: 40,
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(20),
+        child: Image.asset('assets/images/logo.jpeg'),
       ),
-    );
-  }
+    ),
+  );
+}
 
   Drawer _buildDrawer(BuildContext context) {
     return Drawer(
