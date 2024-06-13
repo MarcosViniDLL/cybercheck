@@ -9,6 +9,14 @@ class ToDo {
     this.isDone = false,
   });
 
+  Map<String, dynamic> toMap() {
+    return {
+      'id': id,
+      'todoText': todoText,
+      'isDone': isDone ? 1 : 0,
+    };
+  }
+
   static List<ToDo> todoList() {
     return [
       ToDo(id: '01', todoText: 'Treinar', isDone: true),
