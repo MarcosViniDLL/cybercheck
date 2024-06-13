@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:cybercheck/components/colors.dart';
 import 'package:cybercheck/screens/settings.dart';
 import 'package:cybercheck/screens/login_screen.dart';
+import 'package:cybercheck/model/database_helper.dart';
 
 class Home extends StatefulWidget {
   final Function toggleTheme;
@@ -15,14 +16,21 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  final todosList = ToDo.todoList();
   List<ToDo> _foundToDo = [];
   final _todoController = TextEditingController();
+  final DatabaseHelper _dbHelper = DatabaseHelper();
 
   @override
   void initState() {
-    _foundToDo = todosList;
     super.initState();
+    _loadToDos();
+  }
+
+  Future<void> _loadToDos() async {
+    final todos = await _dbHelper.todos();
+    setState(() {
+      _foundToDo = todos;
+    });
   }
 
   @override
@@ -115,19 +123,21 @@ class _HomeState extends State<Home> {
   void _handleToDoChange(ToDo todo) {
     setState(() {
       todo.isDone = !todo.isDone;
+      _dbHelper.updateToDo(todo); // Atualize no banco de dados
     });
   }
 
   void _deleteToDoItem(String id) {
     setState(() {
-      todosList.removeWhere((item) => item.id == id);
+      _dbHelper.deleteToDo(id); // Delete do banco de dados
+      _foundToDo.removeWhere((item) => item.id == id);
     });
   }
 
-  void _addToDoItem(String todo) {
-    if (todo.isEmpty) {
+  void _addToDoItem(String todoText) async {
+    if (todoText.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
+        const SnackBar(
           content: Text('A tarefa não pode estar vazia!'),
           duration: Duration(seconds: 2),
         ),
@@ -135,64 +145,46 @@ class _HomeState extends State<Home> {
       return;
     }
     
+    final newToDo = ToDo(
+      id: DateTime.now().microsecondsSinceEpoch.toString(),
+      todoText: todoText,
+    );
+
+    await _dbHelper.insertToDo(newToDo); // Insira no banco de dados
+
     setState(() {
-      todosList.add(ToDo(
-        id: DateTime.now().microsecondsSinceEpoch.toString(),
-        todoText: todo,
-      ));
+      _foundToDo.add(newToDo);
     });
+
     _todoController.clear();
   }
 
   void _runFilter(String enteredKeyword) {
     List<ToDo> results = [];
     if (enteredKeyword.isEmpty) {
-      results = todosList;
+      _loadToDos(); // Recarregue todas as tarefas
     } else {
-      results = todosList.where((item) => item.todoText!.toLowerCase().contains(enteredKeyword.toLowerCase())).toList();
+      results = _foundToDo.where((item) => item.todoText!.toLowerCase().contains(enteredKeyword.toLowerCase())).toList();
+      setState(() {
+        _foundToDo = results;
+      });
     }
-
-    setState(() {
-      _foundToDo = results;
-    });
-  }
-
-  Widget searchBox() {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 15),
-      decoration: BoxDecoration(
-        color: Theme.of(context).brightness == Brightness.dark ? Colors.grey[800] : Colors.white,
-        borderRadius: BorderRadius.circular(20),
-      ),
-      child: TextField(
-        onChanged: (value) => _runFilter(value),
-        style: TextStyle(color: Theme.of(context).brightness == Brightness.dark ? Colors.white : Colors.black),
-        decoration: InputDecoration(
-          contentPadding: EdgeInsets.all(0),
-          prefixIcon: Icon(Icons.search, color: colorBlack, size: 20),
-          prefixIconConstraints: BoxConstraints(maxHeight: 20, minWidth: 25),
-          border: InputBorder.none,
-          hintText: 'Pesquisar',
-          hintStyle: TextStyle(color: Theme.of(context).brightness == Brightness.dark ? Colors.white.withOpacity(0.5) : colorGrey),
-        ),
-      ),
-    );
   }
 
   AppBar _buildAppBar(BuildContext context) {
     return AppBar(
-      backgroundColor: Theme.of(context).brightness == Brightness.dark
-          ? Theme.of(context).scaffoldBackgroundColor
-          : backgroundColor, // Ajuste de cor de fundo
-      elevation: 0,
-      title: Container(
-        height: 40,
-        width: 40,
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(20),
-          child: Image.asset('assets/images/logo.jpeg'),
+      title: const Text('CyberCheck'),
+      actions: [
+        IconButton(
+          icon: const Icon(Icons.settings),
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => SettingsScreen(toggleTheme: widget.toggleTheme)),
+            );
+          },
         ),
-      ),
+      ],
     );
   }
 
@@ -202,22 +194,15 @@ class _HomeState extends State<Home> {
         padding: EdgeInsets.zero,
         children: <Widget>[
           DrawerHeader(
+            child: const Text('Menu'),
             decoration: BoxDecoration(
-              color: Theme.of(context).scaffoldBackgroundColor,
-            ),
-            child: Text(
-              'Menu',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 24,
-              ),
+              color: Theme.of(context).primaryColor,
             ),
           ),
           ListTile(
             leading: Icon(Icons.settings),
             title: Text('Configurações'),
             onTap: () {
-              Navigator.pop(context);
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => SettingsScreen(toggleTheme: widget.toggleTheme)),
@@ -237,9 +222,28 @@ class _HomeState extends State<Home> {
     );
   }
 
-  void _signOut() {
-    Navigator.of(context).pushReplacement(
-      MaterialPageRoute(builder: (context) => LoginScreen(toggleTheme: widget.toggleTheme)),
+void _signOut() {
+Navigator.of(context).pushReplacement(
+  MaterialPageRoute(builder: (context) => LoginScreen(toggleTheme: widget.toggleTheme)),
+  );
+}
+
+  Widget searchBox() {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(10),
+      ),
+      child: TextField(
+        onChanged: (value) => _runFilter(value),
+        decoration: const InputDecoration(
+          hintText: 'Pesquisar',
+          hintStyle: TextStyle(color: Colors.grey),
+          border: InputBorder.none,
+          icon: Icon(Icons.search),
+        ),
+      ),
     );
   }
 }
