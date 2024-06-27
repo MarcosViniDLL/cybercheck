@@ -36,3 +36,20 @@ git clone https://github.com/MarcosViniDLL/cybercheck-flutter.git
 
 Após clonar o repositório, siga até o diretório ```lib``` e abra o arquivo ```main.dart```. Selecione o emulador, e então você poderá executar normalmente o aplicativo.
 
+<p>Ou se preferir, faça o download e instale a release. Lembrando que ele está disponível apenas para android.</p>
+
+## 👨🏻‍💻 Responsáveis pelo projeto
+
+<p>Abaixo, todos os responsáveis pelo desenvolvimento do projeto. Lembrando que posteriormente será adicionada novas funcionalidades, para uma melhor experiência.</p>
+
+<b>Prototipagem</b>
+- `Figma`: Ana Catarina
+
+<b>Desenvolvimento</b>
+- `Front end`: Marcos Vinícius, Cristian Alexandre, Clóvis Neto e Ana Catarina
+- `Backend`: Marcos Vinícius
+- `Banco de dados`: Anderson Muniz
+
+## 👀 Informações
+
+O aplicativo **CyberCheck** foi desenvolvido para a disciplina **PNT - MOBILE** do curso de **Tec. em Desenvolvimento de Sistemas** do **ETE - Ariano Vilar Suassuna**.
