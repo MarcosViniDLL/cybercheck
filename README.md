@@ -43,7 +43,7 @@ Após clonar o repositório, siga até o diretório ```lib``` e abra o arquivo `
 <p>Abaixo, todos os responsáveis pelo desenvolvimento do projeto. Lembrando que posteriormente será adicionada novas funcionalidades, para uma melhor experiência.</p>
 
 <b>Prototipagem</b>
-- `Figma`: Ana Catarina
+- `Figma`: Ana Catarina e Marcos Vinícius
 
 <b>Desenvolvimento</b>
 - `Front end`: Marcos Vinícius, Cristian Alexandre, Clóvis Neto e Ana Catarina
