@@ -24,7 +24,7 @@ O <b>CyberCheck</b> é um aplicativo de lista de tarefas simples e intuitivo, pr
 
 ## 📱 Como Executar
 
-- Primeiramente, você precisa instalar o Flutter no seu computador, clique no link ao laado e faça a instalação!
+- Primeiramente, você precisa instalar o Flutter no seu computador, clique no link ao lado e faça a instalação!
 - [Link do vídeo](https://www.youtube.com/watch?v=2qeDBQZkjn8)
 
 
