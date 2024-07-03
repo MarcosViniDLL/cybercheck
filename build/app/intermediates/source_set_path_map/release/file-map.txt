@@ -1,0 +1,13 @@
+com.example.cybercheck.app-main-0 C:\Projetos\Cybercheck\cybercheck-flutter\android\app\src\main\res
+com.example.cybercheck.app-release-1 C:\Projetos\Cybercheck\cybercheck-flutter\android\app\src\release\res
+com.example.cybercheck.app-pngs-2 C:\Projetos\Cybercheck\cybercheck-flutter\build\app\generated\res\pngs\release
+com.example.cybercheck.app-resValues-3 C:\Projetos\Cybercheck\cybercheck-flutter\build\app\generated\res\resValues\release
+com.example.cybercheck.app-rs-4 C:\Projetos\Cybercheck\cybercheck-flutter\build\app\generated\res\rs\release
+com.example.cybercheck.app-mergeReleaseResources-5 C:\Projetos\Cybercheck\cybercheck-flutter\build\app\intermediates\incremental\release\mergeReleaseResources\merged.dir
+com.example.cybercheck.app-mergeReleaseResources-6 C:\Projetos\Cybercheck\cybercheck-flutter\build\app\intermediates\incremental\release\mergeReleaseResources\stripped.dir
+com.example.cybercheck.app-merged_res-7 C:\Projetos\Cybercheck\cybercheck-flutter\build\app\intermediates\merged_res\release
+com.example.cybercheck.app-packaged_res-8 C:\Projetos\Cybercheck\cybercheck-flutter\build\sqflite\intermediates\packaged_res\release
+com.example.cybercheck.app-core-1.6.0-9 C:\Users\Marcos Vinícius\.gradle\caches\transforms-3\284a410c767ad6c7a2b0ffc8d8d85981\transformed\core-1.6.0\res
+com.example.cybercheck.app-jetified-window-java-1.0.0-beta04-10 C:\Users\Marcos Vinícius\.gradle\caches\transforms-3\2a215381204751055df81b6269e717b7\transformed\jetified-window-java-1.0.0-beta04\res
+com.example.cybercheck.app-jetified-annotation-experimental-1.1.0-11 C:\Users\Marcos Vinícius\.gradle\caches\transforms-3\3d2f03fc996c2e0aa3dee5cfa3002cd1\transformed\jetified-annotation-experimental-1.1.0\res
+com.example.cybercheck.app-jetified-window-1.0.0-beta04-12 C:\Users\Marcos Vinícius\.gradle\caches\transforms-3\f302e75fb7efd781bcf1a29281c188da\transformed\jetified-window-1.0.0-beta04\res
